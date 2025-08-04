@@ -81,11 +81,11 @@ const Portfolio = () => {
   const projects = [
     {
       title: "Hotel Booking Application",
-      description: "Led team development of a comprehensive hotel booking platform with user authentication, reservation management, and responsive design. Project managed from planning to deployment.",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
+      description: "Led team development of a comprehensive hotel booking platform with user authentication, reservation management, and responsive design. Oversaw the project from planning through deployment.  ⚡ Update in progress: A fully redesigned, animated experience is on the way — stay tuned for v2.0!",
+      image: "/src/assets/mall.jpeg",
       tech: ["React", "JavaScript", "CSS3", "Team Leadership"],
-      github: "https://github.com/NMA19",
-      live: "#",
+      github: "#",
+      live: "https://www.parkmallhotel.com",
       featured: true
     },
     {
@@ -93,17 +93,17 @@ const Portfolio = () => {
       description: "Built a desktop application for managing rent payments and calculating penalties. Features include payment tracking, automated calculations, and user-friendly interface.",
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop",
       tech: ["Desktop Development", "Database Management", "UI Design"],
-      github: "https://github.com/NMA19",
-      live: "#",
-      featured: true
+      github: "",
+      live: "",
+      featured: false
     },
     {
-      title: "React Web Applications",
-      description: "Multiple customized web applications across various industries using modern React architecture. Focus on user interaction, engagement, and responsive design.",
+      title: "Suit management system",
+      description: "Developed a comprehensive suit management system for a local tailor shop. The application allows users to customize their suits, schedule fittings, and manage orders.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
       tech: ["React", "JavaScript", "Tailwind CSS", "Responsive Design"],
-      github: "https://github.com/NMA19",
-      live: "#",
+      github: "",
+      live: "https://www.youtube.com/watch?v=p1MqCsE_WEg",
       featured: false
     },
     {
@@ -259,7 +259,7 @@ const Portfolio = () => {
                 </motion.button>
               ))}
               <motion.a
-                href="#"
+                href="/public/cv.pdf"
                 className="px-6 py-2.5 bg-neutral-900 text-neutral-50 text-sm font-medium rounded-full hover:bg-neutral-800 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -302,7 +302,7 @@ const Portfolio = () => {
                   </motion.button>
                 ))}
                 <motion.a
-                  href="#"
+                  href="/public/cv.pdf"
                   className="inline-flex items-center px-6 py-2.5 bg-neutral-900 text-neutral-50 text-sm font-medium rounded-full"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -374,7 +374,7 @@ const Portfolio = () => {
                 <motion.div className="flex items-center space-x-6">
                   {[
                     { icon: Github, href: "https://github.com/NMA19", label: "GitHub" },
-                    { icon: Linkedin, href: "#", label: "LinkedIn" },
+                    { icon: Linkedin, href: "https://www.linkedin.com/in/anis-nedjem", label: "LinkedIn" },
                     { icon: Mail, href: "mailto:med363839@gmail.com", label: "Email" }
                   ].map((social) => (
                     <motion.a
@@ -922,7 +922,7 @@ const Portfolio = () => {
             <div className="flex justify-center items-center gap-8 mt-16">
               {[
                 { icon: Github, href: "https://github.com/NMA19", label: "GitHub" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/anis-nedjem", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:med363839@gmail.com", label: "Email" }
               ].map((social) => (
                 <motion.a
