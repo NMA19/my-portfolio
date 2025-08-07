@@ -1,13 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import mall from '../assets/mall.jpeg';
+import Cap from '../assets/Cap.png';
+import Suit from '../assets/Suit.jpg';
+
 
 const WorkSection = () => {
   const projects = [
     {
       title: "Hotel Booking Application",
       description: "Led team development of a comprehensive hotel booking platform with user authentication, reservation management, and responsive design. Oversaw the project from planning through deployment.  ⚡ Update in progress: A fully redesigned, animated experience is on the way — stay tuned for v2.0!",
-      image: "/src/assets/mall.jpeg",
+      image: mall,
       tech: ["React", "JavaScript", "CSS3", "Team Leadership"],
       live: "https://www.parkmallhotel.com",
       featured: true
@@ -15,7 +19,7 @@ const WorkSection = () => {
     {
       title: "Rent Management Desktop App",
       description: "Built a desktop application for managing rent payments and calculating penalties. Features include payment tracking, automated calculations, and user-friendly interface.",
-      image: "/src/assets/Cap.png",
+      image: Cap,
       tech: ["Desktop Development", "Database Management", "UI Design"],
       github: "",
       live: "",
@@ -24,7 +28,7 @@ const WorkSection = () => {
     {
       title: "Suit management system",
       description: "Developed a comprehensive suit management system for a local tailor shop. The application allows users to customize their suits, schedule fittings, and manage orders.",
-      image: "/src/assets/Suit.jpg",
+      image: Suit,
       tech: ["React", "JavaScript", "Tailwind CSS", "Responsive Design"],
       github: "",
       live: "https://www.youtube.com/watch?v=p1MqCsE_WEg",
