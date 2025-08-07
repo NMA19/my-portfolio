@@ -1,15 +1,5 @@
 <<<<<<< HEAD
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for # 🌐 My Portfolio
-
-Welcome to my personal portfolio website built with **React** and **Vite**.  
-This project showcases my skills, projects, and experiences as a front-end developer.
 
 ## 🚀 Live Preview
 [Click here to view my portfolio](https://your-deployed-site-link.com) <!-- Replace with actual URL (e.g., Vercel, Netlify, GitHub Pages) -->
@@ -26,9 +16,18 @@ This project showcases my skills, projects, and experiences as a front-end devel
 
 ---
 
-## 📂 Folder Structure
 
-Fast Refresh
+## Component Structure:
+
+Navigation.jsx - Contains the navigation bar with mobile menu
+HeroSection.jsx - The main hero section with animations and tech stack visualization
+AboutSection.jsx - About me and experience timeline
+WorkSection.jsx - Portfolio projects showcase
+ServicesSection.jsx - Services offered with hourly rate card
+PricingSection.jsx - Pricing plans and custom quote section
+ContactSection.jsx - Contact form and social links
+Footer.jsx - Simple footer component
+Portfolio.jsx - Main component that imports and uses all sections
 
 ## Expanding the ESLint configuration
 
@@ -58,7 +57,7 @@ _Add screenshots here (optional)_
 
 ## 📬 Contact
 
-- Email: your.email@example.com  
+- Email: med363839@gmail.com  
 - GitHub: [@NMA19](https://github.com/NMA19)  
 - LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)  
 
