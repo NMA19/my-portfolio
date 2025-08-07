@@ -9,7 +9,6 @@ const WorkSection = () => {
       description: "Led team development of a comprehensive hotel booking platform with user authentication, reservation management, and responsive design. Oversaw the project from planning through deployment.  ⚡ Update in progress: A fully redesigned, animated experience is on the way — stay tuned for v2.0!",
       image: "/src/assets/mall.jpeg",
       tech: ["React", "JavaScript", "CSS3", "Team Leadership"],
-      github: "#",
       live: "https://www.parkmallhotel.com",
       featured: true
     },
@@ -37,7 +36,6 @@ const WorkSection = () => {
       image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
       tech: ["Mobile Development", "Responsive Design", "UI/UX"],
       github: "https://github.com/NMA19/arh_app",
-      live: "#",
       featured: false
     }
   ];
