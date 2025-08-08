@@ -1,13 +1,12 @@
-import Portfolio from './components/Portfolio'
+import Portfolio from './components/Portfolio';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 function App() {
-
   return (
-    <>
-      
-  <Portfolio />
-    </>
-  )
+    <ThemeProvider>
+      <Portfolio />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

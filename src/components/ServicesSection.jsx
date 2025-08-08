@@ -1,43 +1,108 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code, Smartphone, Palette, Settings, Zap, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Code, Smartphone, Palette, Settings, Zap, Clock, ArrowRight, CheckCircle, Star, Users, Briefcase } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ServicesSection = () => {
+  const { theme } = useTheme();
+  const [activeService, setActiveService] = useState(null);
+  
+  const handleKeyDown = (event, action) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      action();
+    }
+  };
   const services = [
     {
       icon: Code,
       title: "Web Development",
       description: "Modern React websites with responsive design, smooth animations, and optimal performance. From landing pages to complex web applications.",
-      features: ["React & JavaScript", "Responsive Design", "Performance Optimization", "SEO-friendly"]
+      features: ["React & JavaScript", "Responsive Design", "Performance Optimization", "SEO-friendly"],
+      pricing: "Starting at $500",
+      timeline: "2-4 weeks",
+      portfolio: "15+ projects",
+      category: "development",
+      highlight: "Most Popular"
     },
     {
       icon: Smartphone,
       title: "Mobile Web Apps",
       description: "Mobile-first web applications that work seamlessly across all devices. Progressive Web Apps (PWA) with native-like experience.",
-      features: ["Mobile-First Design", "Cross-Platform", "Offline Capability", "Push Notifications"]
+      features: ["Mobile-First Design", "Cross-Platform", "Offline Capability", "Push Notifications"],
+      pricing: "Starting at $800",
+      timeline: "3-6 weeks",
+      portfolio: "8+ projects",
+      category: "mobile",
+      highlight: ""
     },
     {
       icon: Palette,
       title: "UI/UX Design",
       description: "Clean, modern interfaces that prioritize user experience. From wireframes to high-fidelity mockups and interactive prototypes.",
-      features: ["Wireframing", "Prototyping", "Figma to Code", "User Testing"]
+      features: ["Wireframing", "Prototyping", "Figma to Code", "User Testing"],
+      pricing: "Starting at $300",
+      timeline: "1-3 weeks",
+      portfolio: "20+ designs",
+      category: "design",
+      highlight: ""
     },
     {
       icon: Settings,
       title: "Custom Components",
       description: "Reusable React components tailored to your brand and needs. Clean code, well-documented, and easily maintainable.",
-      features: ["Component Libraries", "Design Systems", "Documentation", "Testing"]
+      features: ["Component Libraries", "Design Systems", "Documentation", "Testing"],
+      pricing: "Starting at $200",
+      timeline: "1-2 weeks",
+      portfolio: "30+ components",
+      category: "development",
+      highlight: ""
     },
     {
       icon: Zap,
       title: "Performance Optimization",
       description: "Speed up your existing websites and applications. Lighthouse audits, Core Web Vitals optimization, and SEO improvements.",
-      features: ["Speed Optimization", "SEO Improvement", "Lighthouse Audits", "Code Refactoring"]
+      features: ["Speed Optimization", "SEO Improvement", "Lighthouse Audits", "Code Refactoring"],
+      pricing: "Starting at $400",
+      timeline: "1-2 weeks",
+      portfolio: "12+ optimizations",
+      category: "optimization",
+      highlight: "Quick Results"
+    },
+    {
+      icon: Briefcase,
+      title: "Consultation",
+      description: "Technical consultation and project planning. Code reviews, architecture decisions, and technology recommendations.",
+      features: ["Technical Planning", "Code Reviews", "Architecture Design", "Technology Selection"],
+      pricing: "$12/hour",
+      timeline: "Flexible",
+      portfolio: "50+ consultations",
+      category: "consultation",
+      highlight: ""
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "CEO, TechStart",
+      content: "Mohamed delivered an exceptional web application that exceeded our expectations. His attention to detail and technical expertise are outstanding.",
+      rating: 5
+    },
+    {
+      name: "Mike Chen",
+      role: "Product Manager",
+      content: "Working with Mohamed was a pleasure. He understood our requirements perfectly and delivered on time with excellent quality.",
+      rating: 5
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-neutral-100">
+    <section 
+      id="services" 
+      className={`py-24 ${theme.primary} transition-colors duration-300`}
+      aria-label="Services offered by Mohamed Anis Nedjem"
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -46,14 +111,66 @@ const ServicesSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl lg:text-6xl font-bold mb-6 tracking-tight">Services</h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <motion.h2 
+            className="text-5xl lg:text-6xl font-bold mb-6 tracking-tight"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Services
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
             I specialize in creating modern, high-performance web solutions that help businesses 
-            grow and engage their users effectively.
-          </p>
+            grow and engage their users effectively with cutting-edge technology and design.
+          </motion.p>
+
+          {/* Service Stats */}
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+          >
+            {[
+              { icon: Briefcase, number: "50+", label: "Projects Delivered" },
+              { icon: Users, number: "25+", label: "Happy Clients" },
+              { icon: Star, number: "5.0", label: "Average Rating" },
+              { icon: Clock, number: "3+", label: "Years Experience" }
+            ].map((stat, index) => (
+              <motion.div 
+                key={stat.label}
+                className="bg-white rounded-xl p-6 shadow-lg border border-neutral-200 text-center hover:shadow-xl transition-shadow"
+                whileHover={{ scale: 1.05, y: -5 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+              >
+                <stat.icon className="mx-auto mb-3 text-blue-600" size={24} />
+                <motion.p 
+                  className="text-2xl font-bold text-neutral-900 mb-1"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                >
+                  {stat.number}
+                </motion.p>
+                <p className="text-sm text-neutral-600">{stat.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -62,45 +179,206 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-200 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-2xl p-8 shadow-lg border border-neutral-200 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group cursor-pointer"
+              onClick={() => setActiveService(activeService === index ? null : index)}
+              onKeyDown={(e) => handleKeyDown(e, () => setActiveService(activeService === index ? null : index))}
+              tabIndex={0}
+              role="button"
+              aria-expanded={activeService === index}
+              aria-label={`View details for ${service.title} service`}
             >
-              <div className="mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4">
-                  <service.icon size={28} className="text-white" />
+              {/* Highlight Badge */}
+              {service.highlight && (
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">
+                  {service.highlight}
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                <p className="text-neutral-600 leading-relaxed">{service.description}</p>
+              )}
+
+              <div className="mb-6">
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                  whileHover={{ rotate: 5 }}
+                >
+                  <service.icon size={28} className="text-white" />
+                </motion.div>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{service.title}</h3>
+                <p className="text-neutral-600 leading-relaxed mb-4">{service.description}</p>
+                
+                {/* Pricing and Timeline */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="bg-blue-50 rounded-lg p-3">
+                    <p className="text-sm text-blue-600 font-medium">Price</p>
+                    <p className="font-bold text-neutral-900">{service.pricing}</p>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-3">
+                    <p className="text-sm text-purple-600 font-medium">Timeline</p>
+                    <p className="font-bold text-neutral-900">{service.timeline}</p>
+                  </div>
+                </div>
               </div>
               
-              <div className="space-y-3">
+              {/* Features - Always visible */}
+              <div className="space-y-3 mb-6">
+                <h4 className="font-semibold text-neutral-900 mb-3">What's Included:</h4>
                 {service.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex-shrink-0" />
+                  <motion.div 
+                    key={idx} 
+                    className="flex items-center gap-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (index * 0.1) + (idx * 0.05) }}
+                  >
+                    <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
                     <span className="text-neutral-700 text-sm font-medium">{feature}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
+
+              {/* Portfolio Count */}
+              <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
+                <div className="flex items-center space-x-2">
+                  <Star size={16} className="text-yellow-500" />
+                  <span className="text-sm text-neutral-600">{service.portfolio}</span>
+                </div>
+                <motion.div 
+                  className="flex items-center space-x-2 text-blue-600 hover:text-blue-700"
+                  whileHover={{ x: 5 }}
+                >
+                  <span className="text-sm font-medium">Learn More</span>
+                  <ArrowRight size={16} />
+                </motion.div>
+              </div>
+
+              {/* Expanded Details */}
+              <AnimatePresence>
+                {activeService === index && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-6 pt-6 border-t border-neutral-200"
+                  >
+                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-neutral-900 mb-2">Service Details</h4>
+                      <p className="text-sm text-neutral-600 mb-3">
+                        This service includes comprehensive planning, development, testing, and deployment phases. 
+                        All projects come with documentation and post-launch support.
+                      </p>
+                      <div className="flex items-center space-x-4 text-sm">
+                        <span className="flex items-center space-x-1">
+                          <CheckCircle size={14} className="text-green-500" />
+                          <span>Free Consultation</span>
+                        </span>
+                        <span className="flex items-center space-x-1">
+                          <CheckCircle size={14} className="text-green-500" />
+                          <span>Post-Launch Support</span>
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </div>
 
-        {/* Hourly Rate Card */}
+        {/* Testimonials Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mb-16"
+        >
+          <h3 className="text-3xl font-bold text-center mb-12">What Clients Say</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-neutral-200"
+                whileHover={{ scale: 1.02, y: -5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.6 + index * 0.2 }}
+              >
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={20} className="text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-neutral-600 mb-6 leading-relaxed italic">"{testimonial.content}"</p>
+                <div>
+                  <p className="font-semibold text-neutral-900">{testimonial.name}</p>
+                  <p className="text-sm text-neutral-600">{testimonial.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Hourly Rate Card - Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-16 text-center"
+          className="text-center"
         >
-          <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-8 text-white max-w-md mx-auto">
-            <Clock size={32} className="mx-auto mb-4 text-blue-400" />
-            <h3 className="text-2xl font-bold mb-2">Hourly Rate</h3>
-            <div className="text-4xl font-bold mb-2">$12<span className="text-lg text-neutral-300">/hour</span></div>
-            <p className="text-neutral-300 mb-4">Perfect for ongoing projects or consultation</p>
-            <div className="text-sm text-neutral-400">
-              Minimum 10 hours • Flexible scheduling • Direct communication
-            </div>
-          </div>
+          <motion.div 
+            className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-8 text-white max-w-lg mx-auto relative overflow-hidden"
+            whileHover={{ scale: 1.02, y: -5 }}
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+            
+            <motion.div
+              initial={{ scale: 0.8 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8, type: "spring" }}
+            >
+              <Clock size={32} className="mx-auto mb-4 text-blue-400" />
+              <h3 className="text-2xl font-bold mb-2">Hourly Consultation</h3>
+              <div className="text-5xl font-bold mb-2">
+                $12<span className="text-lg text-neutral-300">/hour</span>
+              </div>
+              <p className="text-neutral-300 mb-6">Perfect for ongoing projects or technical consultation</p>
+              
+              <div className="grid grid-cols-1 gap-3 mb-6 text-sm">
+                {[
+                  "Minimum 10 hours commitment",
+                  "Flexible scheduling options",
+                  "Direct communication channel",
+                  "Technical guidance & mentoring",
+                  "Code reviews & optimization"
+                ].map((feature, index) => (
+                  <motion.div 
+                    key={index}
+                    className="flex items-center space-x-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1 + index * 0.1 }}
+                  >
+                    <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
+                    <span className="text-neutral-300">{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.button
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-600 hover:to-purple-700 transition-all flex items-center space-x-2 mx-auto"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Get started with hourly consultation"
+              >
+                <span>Get Started</span>
+                <ArrowRight size={16} />
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

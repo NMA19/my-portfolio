@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Navigation = ({ 
   activeSection, 
@@ -8,6 +9,8 @@ const Navigation = ({
   setIsMenuOpen, 
   scrollToSection 
 }) => {
+  const { theme } = useTheme();
+  
   const handleKeyDown = (event, action) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -27,7 +30,7 @@ const Navigation = ({
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 w-full bg-neutral-50/80 backdrop-blur-md z-40 border-b border-neutral-200"
+      className={`fixed top-0 w-full ${theme.primary}/80 backdrop-blur-md z-40 ${theme.border} border-b transition-colors duration-300`}
       role="navigation"
       aria-label="Main navigation"
     >
@@ -35,7 +38,7 @@ const Navigation = ({
         <div className="flex justify-between items-center py-6">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold tracking-tight cursor-pointer"
+            className={`text-2xl font-bold tracking-tight cursor-pointer ${theme.text}`}
             onClick={() => scrollToSection('home')}
             onKeyDown={(e) => handleKeyDown(e, () => scrollToSection('home'))}
             tabIndex={0}
@@ -54,8 +57,8 @@ const Navigation = ({
                 onKeyDown={(e) => handleKeyDown(e, () => scrollToSection(item.id))}
                 className={`text-sm font-medium tracking-wide transition-colors relative ${
                   activeSection === item.id 
-                    ? 'text-neutral-900' 
-                    : 'text-neutral-500 hover:text-neutral-900'
+                    ? theme.text 
+                    : `${theme.textSecondary} hover:${theme.text.replace('text-', 'hover:text-')}`
                 }`}
                 whileHover={{ y: -2 }}
                 role="menuitem"
@@ -66,7 +69,7 @@ const Navigation = ({
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-neutral-900"
+                    className={`absolute -bottom-1 left-0 right-0 h-0.5 ${theme.text.replace('text-', 'bg-')}`}
                   />
                 )}
               </motion.button>
@@ -75,7 +78,7 @@ const Navigation = ({
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2.5 bg-neutral-900 text-neutral-50 text-sm font-medium rounded-full hover:bg-neutral-800 transition-colors inline-flex items-center"
+              className={`px-6 py-2.5 ${theme.text.replace('text-', 'bg-')} ${theme.primary} text-sm font-medium rounded-full hover:opacity-80 transition-all inline-flex items-center`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Download resume (opens in new tab)"
@@ -87,7 +90,7 @@ const Navigation = ({
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2"
+            className={`md:hidden p-2 ${theme.text}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             onKeyDown={(e) => handleKeyDown(e, () => setIsMenuOpen(!isMenuOpen))}
             whileHover={{ scale: 1.1 }}
@@ -108,7 +111,7 @@ const Navigation = ({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-neutral-50/95 backdrop-blur-md border-t border-neutral-200"
+            className={`md:hidden ${theme.secondary}/95 backdrop-blur-md ${theme.border} border-t transition-colors duration-300`}
             id="mobile-menu"
             role="menu"
             aria-label="Mobile navigation menu"
@@ -127,8 +130,8 @@ const Navigation = ({
                   })}
                   className={`block w-full text-left text-lg font-medium transition-colors ${
                     activeSection === item.id 
-                      ? 'text-neutral-900 border-l-4 border-neutral-900 pl-4' 
-                      : 'text-neutral-700 hover:text-neutral-900 pl-0'
+                      ? `${theme.text} border-l-4 ${theme.accent.replace('bg-', 'border-')} pl-4` 
+                      : `${theme.textSecondary} hover:${theme.text.replace('text-', 'hover:text-')} pl-0`
                   }`}
                   whileHover={{ x: 10 }}
                   role="menuitem"
@@ -141,7 +144,7 @@ const Navigation = ({
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-2.5 bg-neutral-900 text-neutral-50 text-sm font-medium rounded-full mt-4"
+                className={`inline-flex items-center px-6 py-2.5 ${theme.text.replace('text-', 'bg-')} ${theme.primary} text-sm font-medium rounded-full mt-4 transition-colors duration-300`}
                 whileHover={{ scale: 1.05 }}
                 aria-label="Download resume (opens in new tab)"
               >

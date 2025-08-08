@@ -108,68 +108,75 @@ const Portfolio = () => {
   return (
     <div className={`min-h-screen ${theme.primary} ${theme.text} relative overflow-hidden transition-colors duration-500`}>
       {/* Scroll Progress Bar */}
-      <div
+      <motion.div
         className={`fixed top-0 left-0 h-1 ${theme.accent} z-50`}
-        style={{ 
-          width: `${scrollProgress}%`,
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: 9999
-        }}
+        style={{ width: `${scrollProgress}%` }}
+        initial={{ width: 0 }}
+        animate={{ width: `${scrollProgress}%` }}
       />
 
       {/* Theme Toggle Button */}
-      <button
+      <motion.button
         onClick={toggleTheme}
-        className={`fixed top-24 right-4 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-50`}
-        style={{ 
-          position: 'fixed',
-          top: '96px', // Below the navigation
-          right: '16px',
-          zIndex: 9999,
-          backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
-          color: isDarkMode ? '#ffffff' : '#000000',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-          border: '1px solid ' + (isDarkMode ? '#374151' : '#e5e7eb')
-        }}
+        className={`fixed top-6 right-6 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-40`}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
       >
-        {isDarkMode ? (
-          <Sun className="w-5 h-5" />
-        ) : (
-          <Moon className="w-5 h-5" />
-        )}
-      </button>
+        <AnimatePresence mode="wait">
+          {isDarkMode ? (
+            <motion.div
+              key="sun"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Sun className="w-5 h-5" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="moon"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Moon className="w-5 h-5" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
 
       {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-40`}
-          style={{
-            position: 'fixed',
-            bottom: '24px',
-            right: '24px',
-            zIndex: 9998,
-            backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
-            color: isDarkMode ? '#ffffff' : '#000000'
-          }}
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            onClick={scrollToTop}
+            className={`fixed bottom-6 right-6 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-40`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Custom Cursor */}
-      <div
+      <motion.div
         className={`fixed w-6 h-6 border-2 ${isDarkMode ? 'border-white' : 'border-black'} rounded-full pointer-events-none z-50 mix-blend-difference`}
-        style={{
-          left: `${mousePosition.x - 12}px`,
-          top: `${mousePosition.y - 12}px`,
-          transition: 'all 0.1s ease',
-          position: 'fixed',
-          zIndex: 9997
+        animate={{
+          x: mousePosition.x - 12,
+          y: mousePosition.y - 12,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
         }}
       />
 

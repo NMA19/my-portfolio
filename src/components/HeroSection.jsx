@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUpRight, MapPin } from 'lucide-react';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HeroSection = ({ scrollToSection }) => {
+  const { theme } = useTheme();
   const handleKeyDown = (event, action) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
@@ -19,7 +21,7 @@ const HeroSection = ({ scrollToSection }) => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center pt-24 pb-12"
+      className={`min-h-screen flex items-center pt-24 pb-12 ${theme.primary} transition-colors duration-300`}
       aria-label="Hero section - Mohamed Anis Nedjem, Frontend Developer"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
@@ -30,7 +32,7 @@ const HeroSection = ({ scrollToSection }) => {
             transition={{ duration: 0.8 }}
           >
             <motion.p 
-              className="text-neutral-600 text-lg mb-4 flex items-center"
+              className={`${theme.textSecondary} text-lg mb-4 flex items-center`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -40,7 +42,7 @@ const HeroSection = ({ scrollToSection }) => {
             </motion.p>
             
             <motion.h1 
-              className="text-6xl lg:text-8xl font-bold leading-none mb-8 tracking-tight"
+              className={`text-6xl lg:text-8xl font-bold leading-none mb-8 tracking-tight ${theme.text}`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -49,7 +51,7 @@ const HeroSection = ({ scrollToSection }) => {
             >
               Frontend
               <br />
-              <span className="text-neutral-500">Developer</span>
+              <span className={theme.textSecondary}>Developer</span>
             </motion.h1>
             
             <motion.p 
