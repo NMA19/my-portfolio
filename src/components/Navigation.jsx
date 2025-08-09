@@ -78,7 +78,7 @@ const Navigation = ({
               href="/cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className={`px-6 py-2.5 ${theme.text.replace('text-', 'bg-')} ${theme.primary} text-sm font-medium rounded-full hover:opacity-80 transition-all inline-flex items-center`}
+              className={`px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-full hover:opacity-90 transition-all inline-flex items-center ${theme.shadowLg}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Download resume (opens in new tab)"
@@ -144,7 +144,7 @@ const Navigation = ({
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center px-6 py-2.5 ${theme.text.replace('text-', 'bg-')} ${theme.primary} text-sm font-medium rounded-full mt-4 transition-colors duration-300`}
+                className={`inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium rounded-full mt-4 transition-all duration-300 ${theme.shadowLg}`}
                 whileHover={{ scale: 1.05 }}
                 aria-label="Download resume (opens in new tab)"
               >

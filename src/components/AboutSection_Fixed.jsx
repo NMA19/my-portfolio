@@ -8,8 +8,8 @@ const AboutSection = () => {
   
   const skills = [
     { category: "Frontend", items: ["React", "JavaScript", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"] },
-    { category: "Tools & Others", items: ["Git", "VS Code", "Figma", "Responsive Design", "UI/UX", "Team Leadership"] },
-    { category: "Learning", items: ["Node.js", "System Design", "Docker", "Machine Learning"] }
+    { category: "Tools & Others", items: ["Git", "VS Code", "Figma", "Responsive Design", "UI/UX"] },
+    { category: "Learning", items: ["Node.js", "Machine Learning", "System Design", "Docker"] }
   ];
 
   const experiences = [
@@ -18,11 +18,11 @@ const AboutSection = () => {
       role: "Frontend Developer",
       company: "LogikaBox",
       location: "El Eulma, Algeria",
-      description: "Leading frontend development for multiple client projects using React and modern frameworks.",
+      description: "Developing scalable web applications using React and modern JavaScript frameworks.",
       achievements: [
-        "Led development of 5+ successful web applications",
+        "Led frontend development for 5+ client projects",
         "Improved application performance by 40%",
-        "Mentored junior developers and established coding standards"
+        "Mentored 2 junior developers"
       ]
     },
     {
@@ -30,11 +30,11 @@ const AboutSection = () => {
       role: "Web Developer",
       company: "Freelance",
       location: "Remote",
-      description: "Delivered custom web solutions for diverse clients with focus on responsive design.",
+      description: "Built responsive websites and web applications for various clients.",
       achievements: [
-        "Completed 15+ projects with 98% client satisfaction",
-        "Specialized in React and modern CSS frameworks",
-        "Built scalable applications for various industries"
+        "Completed 15+ successful projects",
+        "Achieved 98% client satisfaction rate",
+        "Specialized in React and Tailwind CSS"
       ]
     }
   ];
@@ -55,8 +55,8 @@ const AboutSection = () => {
         >
           <h2 className={`text-5xl lg:text-6xl font-bold mb-6 tracking-tight ${theme.text}`}>About Me</h2>
           <p className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto`}>
-            Frontend Developer specializing in React and modern web technologies. 
-            Focused on building efficient, scalable applications with clean user experiences.
+            Passionate frontend developer dedicated to creating exceptional digital experiences 
+            through clean code, innovative design, and continuous learning.
           </p>
         </motion.div>
 
@@ -75,14 +75,20 @@ const AboutSection = () => {
               transition={{ delay: 0.4 }}
             >
               <p>
-                Frontend Developer with 3+ years of experience building scalable web applications 
-                using React, JavaScript, and modern frameworks. Currently pursuing Master's in 
-                Networks and Distributed Systems while leading frontend development at LogikaBox.
+                I'm a highly motivated Frontend Developer with over 3 years of hands-on experience 
+                in designing and developing dynamic, user-centric web applications. Currently pursuing 
+                my Master's in Networks and Distributed Systems while working full-time at LogikaBox.
               </p>
               <p>
-                Specialized in creating responsive, user-focused interfaces with clean code and 
-                modern design patterns. Proven track record in team leadership, performance 
-                optimization, and delivering high-quality digital solutions.
+                Specialized in modern technologies such as React, JavaScript, and Tailwind CSS, 
+                with a strong foundation in information systems and network engineering. I'm passionate 
+                about continuous improvement, clean UI/UX design, and building scalable digital solutions 
+                that drive business growth.
+              </p>
+              <p>
+                When I'm not coding, you'll find me exploring machine learning, video editing, 
+                cooking, or diving deep into UI/UX design principles. I believe in mentoring others 
+                and sharing knowledge with the developer community.
               </p>
             </motion.div>
 
@@ -99,7 +105,7 @@ const AboutSection = () => {
                   <GraduationCap className={`${theme.textSecondary} mt-1`} size={16} />
                   <div>
                     <p className={`font-medium ${theme.text}`}>Master's in Networks and Distributed Systems</p>
-                    <p className={`text-sm ${theme.textSecondary}`}>University of Constantine 2 (Abdelhamid Mehri) (2024-2026)</p>
+                    <p className={`text-sm ${theme.textSecondary}`}>University of Mohamed Boudiaf, M'sila (2023-2025)</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">

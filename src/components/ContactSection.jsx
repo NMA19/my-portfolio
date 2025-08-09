@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, ArrowUpRight, Send, MessageSquare, Calendar, Ma
 import { useTheme } from '../contexts/ThemeContext';
 
 const ContactSection = () => {
-  const { theme } = useTheme();
+  const { theme, isDarkMode } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -130,7 +130,7 @@ const ContactSection = () => {
             Let's Create Something Amazing
           </motion.h2>
           <motion.p 
-            className="text-xl text-neutral-600 mb-12 leading-relaxed max-w-3xl mx-auto"
+            className={`text-xl ${theme.textSecondary} mb-12 leading-relaxed max-w-3xl mx-auto`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -150,10 +150,10 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-neutral-200">
+            <div className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} border ${theme.border}`}>
               <div className="flex items-center space-x-3 mb-6">
                 <MessageSquare className="text-blue-600" size={24} />
-                <h3 className="text-2xl font-bold">Send me a message</h3>
+                <h3 className={`text-2xl font-bold ${theme.text}`}>Send me a message</h3>
               </div>
 
               <AnimatePresence mode="wait">
@@ -166,7 +166,7 @@ const ContactSection = () => {
                   >
                     <CheckCircle className="mx-auto mb-4 text-green-500" size={48} />
                     <h4 className="text-xl font-semibold text-green-600 mb-2">Message Sent!</h4>
-                    <p className="text-neutral-600">
+                    <p className={`${theme.textSecondary}`}>
                       Thank you for reaching out. I'll get back to you within 24 hours.
                     </p>
                   </motion.div>
@@ -179,19 +179,19 @@ const ContactSection = () => {
                   >
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                        <label htmlFor="name" className={`block text-sm font-medium ${theme.textSecondary} mb-2`}>
                           Full Name *
                         </label>
                         <div className="relative">
-                          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400" size={18} />
+                          <User className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${theme.textSecondary}`} size={18} />
                           <input
                             type="text"
                             id="name"
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
-                            className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                              errors.name ? 'border-red-500' : 'border-neutral-300'
+                            className={`w-full pl-10 pr-4 py-3 ${theme.secondary} ${theme.border} border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${theme.text} ${
+                              errors.name ? 'border-red-500' : ''
                             }`}
                             placeholder="Your full name"
                             aria-invalid={errors.name ? 'true' : 'false'}
@@ -204,19 +204,19 @@ const ContactSection = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                        <label htmlFor="email" className={`block text-sm font-medium ${theme.textSecondary} mb-2`}>
                           Email Address *
                         </label>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400" size={18} />
+                          <Mail className={`absolute left-3 top-1/2 transform -translate-y-1/2 ${theme.textSecondary}`} size={18} />
                           <input
                             type="email"
                             id="email"
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                              errors.email ? 'border-red-500' : 'border-neutral-300'
+                            className={`w-full pl-10 pr-4 py-3 ${theme.secondary} ${theme.border} border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${theme.text} ${
+                              errors.email ? 'border-red-500' : ''
                             }`}
                             placeholder="your.email@example.com"
                             aria-invalid={errors.email ? 'true' : 'false'}
@@ -230,7 +230,7 @@ const ContactSection = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                      <label htmlFor="subject" className={`block text-sm font-medium ${theme.textSecondary} mb-2`}>
                         Subject *
                       </label>
                       <input
@@ -239,8 +239,8 @@ const ContactSection = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-                          errors.subject ? 'border-red-500' : 'border-neutral-300'
+                        className={`w-full px-4 py-3 ${theme.secondary} ${theme.border} border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${theme.text} ${
+                          errors.subject ? 'border-red-500' : ''
                         }`}
                         placeholder="Project discussion, consultation, etc."
                         aria-invalid={errors.subject ? 'true' : 'false'}
@@ -252,19 +252,19 @@ const ContactSection = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                      <label htmlFor="message" className={`block text-sm font-medium ${theme.textSecondary} mb-2`}>
                         Message *
                       </label>
                       <div className="relative">
-                        <MessageCircle className="absolute left-3 top-3 text-neutral-400" size={18} />
+                        <MessageCircle className={`absolute left-3 top-3 ${theme.textSecondary}`} size={18} />
                         <textarea
                           id="message"
                           name="message"
                           value={formData.message}
                           onChange={handleInputChange}
                           rows={5}
-                          className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${
-                            errors.message ? 'border-red-500' : 'border-neutral-300'
+                          className={`w-full pl-10 pr-4 py-3 ${theme.secondary} ${theme.border} border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${theme.text} ${
+                            errors.message ? 'border-red-500' : ''
                           }`}
                           placeholder="Tell me about your project, timeline, budget, and any specific requirements..."
                           aria-invalid={errors.message ? 'true' : 'false'}
@@ -310,10 +310,10 @@ const ContactSection = () => {
             className="space-y-8"
           >
             {/* Quick Contact */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-neutral-200">
+            <div className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border`}>
               <div className="flex items-center space-x-3 mb-6">
                 <Calendar className="text-green-600" size={24} />
-                <h3 className="text-2xl font-bold">Quick Contact</h3>
+                <h3 className={`text-2xl font-bold ${theme.text}`}>Quick Contact</h3>
               </div>
               
               <motion.a
@@ -328,30 +328,30 @@ const ContactSection = () => {
                 <ArrowUpRight size={20} className="ml-auto group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </motion.a>
 
-              <p className="text-neutral-600 text-center">
+              <p className={`${theme.textSecondary} text-center`}>
                 Prefer email? Click above to send me a direct message
               </p>
             </div>
 
             {/* Contact Information */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-neutral-200">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <div className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border`}>
+              <h3 className={`text-2xl font-bold mb-6 ${theme.text}`}>Contact Information</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.div
                     key={info.title}
-                    className="flex items-start space-x-4 p-4 bg-neutral-50 rounded-xl hover:bg-neutral-100 transition-colors"
+                    className={`flex items-start space-x-4 p-4 ${theme.primary} rounded-xl ${theme.hover} transition-colors`}
                     whileHover={{ scale: 1.02, x: 5 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.7 + index * 0.1 }}
                   >
-                    <info.icon className="text-blue-600 mt-1" size={20} />
+                    <info.icon className={`${theme.accent.replace('bg-', 'text-')} mt-1`} size={20} />
                     <div>
-                      <h4 className="font-semibold text-neutral-900">{info.title}</h4>
-                      <p className="text-neutral-700 font-medium">{info.value}</p>
-                      <p className="text-sm text-neutral-600">{info.description}</p>
+                      <h4 className={`font-semibold ${theme.text}`}>{info.title}</h4>
+                      <p className={`${theme.text} font-medium`}>{info.value}</p>
+                      <p className={`text-sm ${theme.textSecondary}`}>{info.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -359,8 +359,8 @@ const ContactSection = () => {
             </div>
 
             {/* Social Links */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl border border-neutral-200">
-              <h3 className="text-2xl font-bold mb-6">Connect With Me</h3>
+            <div className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border`}>
+              <h3 className={`text-2xl font-bold mb-6 ${theme.text}`}>Connect With Me</h3>
               <div className="grid gap-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -368,7 +368,7 @@ const ContactSection = () => {
                     href={social.href}
                     target={social.label === "Email" ? "_self" : "_blank"}
                     rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                    className={`group flex items-center space-x-4 p-4 border border-neutral-200 rounded-xl transition-all hover:border-transparent hover:text-white ${social.color}`}
+                    className={`group flex items-center space-x-4 p-4 ${theme.border} border rounded-xl transition-all ${theme.text} hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:border-transparent`}
                     whileHover={{ scale: 1.02, x: 5 }}
                     whileTap={{ scale: 0.98 }}
                     initial={{ opacity: 0, y: 20 }}
@@ -390,7 +390,7 @@ const ContactSection = () => {
 
             {/* Availability Status */}
             <motion.div 
-              className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 border border-green-200"
+              className={`${theme.secondary} rounded-2xl p-6 ${theme.border} border bg-gradient-to-r from-green-500/10 to-blue-500/10`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -398,9 +398,9 @@ const ContactSection = () => {
             >
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <h4 className="font-semibold text-green-800">Available for new projects</h4>
+                <h4 className={`font-semibold ${theme.text}`}>Available for new projects</h4>
               </div>
-              <p className="text-green-700 text-sm">
+              <p className={`${theme.textSecondary} text-sm`}>
                 I'm currently accepting new clients and projects. Let's discuss how I can help bring your ideas to life!
               </p>
             </motion.div>
@@ -413,17 +413,17 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-center mt-16 pt-16 border-t border-neutral-200"
+          className={`text-center mt-16 pt-16 border-t ${theme.border}`}
         >
-          <h3 className="text-2xl font-bold mb-4">Ready to get started?</h3>
-          <p className="text-neutral-600 mb-8 max-w-2xl mx-auto">
+          <h3 className={`text-2xl font-bold mb-4 ${theme.text}`}>Ready to get started?</h3>
+          <p className={`${theme.textSecondary} mb-8 max-w-2xl mx-auto`}>
             Whether you need a simple website or a complex web application, I'm here to help. 
             Let's schedule a free consultation to discuss your project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
               href="mailto:med363839@gmail.com?subject=Project%20Consultation"
-              className="inline-flex items-center px-8 py-3 bg-neutral-900 text-white rounded-full font-medium hover:bg-neutral-800 transition-colors"
+              className={`inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition-all`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -432,7 +432,7 @@ const ContactSection = () => {
             </motion.a>
             <motion.a
               href="#pricing"
-              className="inline-flex items-center px-8 py-3 border border-neutral-300 text-neutral-700 rounded-full font-medium hover:border-neutral-900 hover:text-neutral-900 transition-colors"
+              className={`inline-flex items-center px-8 py-3 border ${theme.border} ${theme.text} rounded-full font-medium hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 hover:text-white hover:border-transparent transition-all`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

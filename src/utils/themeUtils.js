@@ -37,6 +37,7 @@ export const extendedThemes = {
     accent: 'bg-blue-500',
     border: 'border-neutral-200',
     shadowLg: 'shadow-lg shadow-neutral-200/50',
+    shadowXl: 'shadow-xl shadow-neutral-200/60',
     shadowSm: 'shadow-sm shadow-neutral-200/30',
     // Additional utilities
     hover: 'hover:bg-neutral-100',
@@ -51,6 +52,7 @@ export const extendedThemes = {
     accent: 'bg-blue-400',
     border: 'border-neutral-700',
     shadowLg: 'shadow-lg shadow-black/30',
+    shadowXl: 'shadow-xl shadow-black/40',
     shadowSm: 'shadow-sm shadow-black/20',
     // Additional utilities
     hover: 'hover:bg-neutral-700',

@@ -122,16 +122,12 @@ const Portfolio = () => {
       {/* Theme Toggle Button */}
       <button
         onClick={toggleTheme}
-        className={`fixed top-24 right-4 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-50`}
+        className={`fixed top-24 right-4 ${theme.secondary} ${theme.text} ${theme.border} border p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-50`}
         style={{ 
           position: 'fixed',
           top: '96px', // Below the navigation
           right: '16px',
-          zIndex: 9999,
-          backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
-          color: isDarkMode ? '#ffffff' : '#000000',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-          border: '1px solid ' + (isDarkMode ? '#374151' : '#e5e7eb')
+          zIndex: 9999
         }}
         aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
       >
@@ -146,14 +142,12 @@ const Portfolio = () => {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className={`fixed bottom-6 right-6 ${theme.secondary} ${theme.text} p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-40`}
+          className={`fixed bottom-6 right-6 ${theme.secondary} ${theme.text} ${theme.border} border p-3 rounded-full ${theme.shadowLg} hover:scale-110 transition-all duration-300 z-40`}
           style={{
             position: 'fixed',
             bottom: '24px',
             right: '24px',
-            zIndex: 9998,
-            backgroundColor: isDarkMode ? '#1f2937' : '#ffffff',
-            color: isDarkMode ? '#ffffff' : '#000000'
+            zIndex: 9998
           }}
           aria-label="Scroll to top"
         >

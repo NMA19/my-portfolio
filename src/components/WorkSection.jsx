@@ -107,7 +107,7 @@ const WorkSection = () => {
             Selected Work
           </motion.h2>
           <motion.p 
-            className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12"
+            className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto mb-12`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -131,8 +131,8 @@ const WorkSection = () => {
                 onClick={() => setActiveFilter(category.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-all flex items-center space-x-2 ${
                   activeFilter === category.id
-                    ? 'bg-neutral-900 text-white shadow-lg'
-                    : 'bg-white text-neutral-600 border border-neutral-300 hover:border-neutral-900 hover:text-neutral-900'
+                    ? `${theme.button} ${theme.buttonText} shadow-lg`
+                    : `${theme.secondary} ${theme.textSecondary} border ${theme.border} hover:${theme.shadowLg} hover:${theme.text}`
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -140,7 +140,7 @@ const WorkSection = () => {
               >
                 <Filter size={16} />
                 <span>{category.label}</span>
-                <span className="bg-neutral-200 text-neutral-600 px-2 py-0.5 rounded-full text-xs">
+                <span className={`${theme.accent} ${theme.textSecondary} px-2 py-0.5 rounded-full text-xs`}>
                   {category.count}
                 </span>
               </motion.button>
@@ -163,16 +163,16 @@ const WorkSection = () => {
             ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                className="bg-white rounded-xl p-6 shadow-lg border border-neutral-200 text-center hover:shadow-xl transition-shadow"
+                className={`${theme.secondary} rounded-xl p-6 ${theme.shadow} border ${theme.border} text-center hover:${theme.shadowLg} transition-shadow`}
                 whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.8 + index * 0.1 }}
               >
-                <stat.icon className="mx-auto mb-3 text-neutral-600" size={24} />
+                <stat.icon className={`mx-auto mb-3 ${theme.iconColor}`} size={24} />
                 <motion.p 
-                  className="text-2xl font-bold text-neutral-900 mb-1"
+                  className={`text-2xl font-bold ${theme.text} mb-1`}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -180,7 +180,7 @@ const WorkSection = () => {
                 >
                   {stat.number}
                 </motion.p>
-                <p className="text-sm text-neutral-600">{stat.label}</p>
+                <p className={`text-sm ${theme.textSecondary}`}>{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -241,20 +241,20 @@ const WorkSection = () => {
 
                     {/* Project Info Overlay */}
                     <motion.div 
-                      className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 opacity-0 hover:opacity-100 transition-opacity"
+                      className={`absolute bottom-6 left-6 right-6 ${theme.secondary}/95 backdrop-blur-sm rounded-xl p-4 opacity-0 hover:opacity-100 transition-opacity`}
                       whileHover={{ opacity: 1 }}
                     >
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div className="flex items-center space-x-2">
-                          <Calendar size={16} className="text-neutral-500" />
-                          <span className="text-neutral-600">{project.year}</span>
+                          <Calendar size={16} className={`${theme.iconColor}`} />
+                          <span className={`${theme.textSecondary}`}>{project.year}</span>
                         </div>
                         <div className="flex items-center space-x-2">
-                          <Users size={16} className="text-neutral-500" />
-                          <span className="text-neutral-600">{project.team}</span>
+                          <Users size={16} className={`${theme.iconColor}`} />
+                          <span className={`${theme.textSecondary}`}>{project.team}</span>
                         </div>
                         <div className="text-right">
-                          <span className="text-neutral-600">{project.duration}</span>
+                          <span className={`${theme.textSecondary}`}>{project.duration}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -275,16 +275,16 @@ const WorkSection = () => {
                       )}
                     </div>
                     
-                    <p className="text-lg text-neutral-600 mb-6 leading-relaxed">{project.description}</p>
+                    <p className={`text-lg ${theme.textSecondary} mb-6 leading-relaxed`}>{project.description}</p>
                     
                     {/* Achievements */}
                     <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-neutral-900 mb-3">Key Achievements</h4>
+                      <h4 className={`text-sm font-semibold ${theme.text} mb-3`}>Key Achievements</h4>
                       <ul className="space-y-2">
                         {project.achievements.map((achievement, i) => (
                           <motion.li 
                             key={i}
-                            className="flex items-center space-x-2 text-sm text-neutral-600"
+                            className={`flex items-center space-x-2 text-sm ${theme.textSecondary}`}
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -301,7 +301,7 @@ const WorkSection = () => {
                       {project.tech.map((tech, techIndex) => (
                         <motion.span 
                           key={tech}
-                          className="px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border border-neutral-200 text-neutral-700 rounded-full text-sm font-medium hover:border-blue-300 transition-colors"
+                          className={`px-4 py-2 ${theme.accent} border ${theme.border} ${theme.textSecondary} rounded-full text-sm font-medium hover:${theme.shadowLg} transition-colors`}
                           whileHover={{ scale: 1.05 }}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
@@ -319,7 +319,7 @@ const WorkSection = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center gap-2 px-6 py-3 bg-neutral-900 text-white rounded-full font-medium hover:bg-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2"
+                          className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-purple-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                           whileHover={{ scale: 1.05, x: 5 }}
                           whileTap={{ scale: 0.95 }}
                           aria-label={`View source code for ${project.title}`}
@@ -334,7 +334,7 @@ const WorkSection = () => {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center gap-2 px-6 py-3 border border-neutral-300 text-neutral-700 rounded-full font-medium hover:border-neutral-900 hover:text-neutral-900 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2"
+                          className={`group flex items-center gap-2 px-6 py-3 border ${theme.border} ${theme.textSecondary} rounded-full font-medium hover:${theme.text} transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                           whileHover={{ scale: 1.05, x: 5 }}
                           whileTap={{ scale: 0.95 }}
                           aria-label={`View live demo of ${project.title}`}

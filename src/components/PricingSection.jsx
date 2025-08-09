@@ -4,7 +4,7 @@ import { Check, DollarSign, Clock, Star, Users, ArrowRight, Zap, Shield, Award, 
 import { useTheme } from '../contexts/ThemeContext';
 
 const PricingSection = ({ scrollToSection }) => {
-  const { theme } = useTheme();
+  const { theme, isDarkMode } = useTheme();
   const [billingPeriod, setBillingPeriod] = useState('project');
   const [activeFeature, setActiveFeature] = useState(null);
 
@@ -130,7 +130,7 @@ const PricingSection = ({ scrollToSection }) => {
             Pricing Plans
           </motion.h2>
           <motion.p 
-            className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12"
+            className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto mb-12`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -148,7 +148,7 @@ const PricingSection = ({ scrollToSection }) => {
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
           >
-            <span className={`font-medium ${billingPeriod === 'project' ? 'text-neutral-900' : 'text-neutral-500'}`}>
+            <span className={`font-medium ${billingPeriod === 'project' ? theme.text : theme.textSecondary}`}>
               Project Based
             </span>
             <motion.button
@@ -159,12 +159,12 @@ const PricingSection = ({ scrollToSection }) => {
               aria-label="Toggle between project and hourly pricing"
             >
               <motion.div
-                className="w-6 h-6 bg-white rounded-full shadow-sm"
+                className={`w-6 h-6 ${theme.secondary} rounded-full shadow-sm`}
                 animate={{ x: billingPeriod === 'project' ? 0 : 32 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
               />
             </motion.button>
-            <span className={`font-medium ${billingPeriod === 'hourly' ? 'text-neutral-900' : 'text-neutral-500'}`}>
+            <span className={`font-medium ${billingPeriod === 'hourly' ? theme.text : theme.textSecondary}`}>
               Hourly Rate
             </span>
           </motion.div>
@@ -185,7 +185,7 @@ const PricingSection = ({ scrollToSection }) => {
             ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                className="bg-white rounded-xl p-4 shadow-lg border border-neutral-200 text-center hover:shadow-xl transition-shadow"
+                className={`${theme.secondary} rounded-xl p-4 ${theme.shadow} border ${theme.border} text-center hover:${theme.shadowLg} transition-shadow`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -193,8 +193,8 @@ const PricingSection = ({ scrollToSection }) => {
                 transition={{ delay: 0.8 + index * 0.1 }}
               >
                 <stat.icon className="mx-auto mb-2 text-blue-600" size={20} />
-                <p className="text-lg font-bold text-neutral-900">{stat.number}</p>
-                <p className="text-xs text-neutral-600">{stat.label}</p>
+                <p className={`text-lg font-bold ${theme.text}`}>{stat.number}</p>
+                <p className={`text-xs ${theme.textSecondary}`}>{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -209,7 +209,7 @@ const PricingSection = ({ scrollToSection }) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ scale: 1.02, y: -8 }}
-              className={`bg-white rounded-2xl p-8 border-2 transition-all duration-300 relative overflow-hidden ${
+              className={`${theme.secondary} rounded-2xl p-8 border-2 transition-all duration-300 relative overflow-hidden ${
                 plan.popular 
                   ? 'border-blue-500 shadow-2xl ring-2 ring-blue-500/20' 
                   : 'border-neutral-200 hover:border-neutral-300 shadow-lg hover:shadow-xl'
@@ -251,13 +251,13 @@ const PricingSection = ({ scrollToSection }) => {
                     <span className="text-4xl font-bold">
                       ${billingPeriod === 'project' ? plan.price : plan.hourlyPrice}
                     </span>
-                    <span className="text-neutral-500">
+                    <span className={`${theme.textSecondary}`}>
                       {billingPeriod === 'project' ? plan.period : '/hour'}
                     </span>
                   </motion.div>
                 </AnimatePresence>
                 
-                <p className="text-neutral-600 mb-6">{plan.description}</p>
+                <p className={`${theme.textSecondary} mb-6`}>{plan.description}</p>
 
                 {/* Project Details */}
                 <div className="grid grid-cols-3 gap-4 mb-6 text-sm">
@@ -281,7 +281,7 @@ const PricingSection = ({ scrollToSection }) => {
 
               {/* Features */}
               <div className="space-y-4 mb-8">
-                <h4 className="font-semibold text-neutral-900 mb-3">What's Included:</h4>
+                <h4 className={`font-semibold ${theme.text} mb-3`}>What's Included:</h4>
                 {plan.features.map((feature, idx) => (
                   <motion.div 
                     key={idx} 
@@ -297,10 +297,10 @@ const PricingSection = ({ scrollToSection }) => {
                   >
                     <Check size={20} className="text-green-500 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <span className="text-neutral-700 group-hover:text-neutral-900 transition-colors">
+                      <span className={`${theme.textSecondary} group-hover:${theme.text} transition-colors`}>
                         {feature.name}
                       </span>
-                      <Info size={14} className="inline ml-2 text-neutral-400 group-hover:text-neutral-600" />
+                      <Info size={14} className={`inline ml-2 ${theme.iconColor} group-hover:${theme.textSecondary}`} />
                       
                       <AnimatePresence>
                         {activeFeature === `${index}-${idx}` && (
@@ -308,7 +308,7 @@ const PricingSection = ({ scrollToSection }) => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="mt-2 text-sm text-neutral-600 bg-neutral-50 p-3 rounded-lg"
+                            className={`mt-2 text-sm ${theme.textSecondary} ${theme.accent} p-3 rounded-lg`}
                           >
                             {feature.tooltip}
                           </motion.div>
@@ -321,12 +321,12 @@ const PricingSection = ({ scrollToSection }) => {
 
               {/* Deliverables */}
               <div className="mb-8">
-                <h4 className="font-semibold text-neutral-900 mb-3">Deliverables:</h4>
+                <h4 className={`font-semibold ${theme.text} mb-3`}>Deliverables:</h4>
                 <div className="flex flex-wrap gap-2">
                   {plan.deliverables.map((deliverable, idx) => (
                     <span 
                       key={idx}
-                      className="px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm border"
+                      className={`px-3 py-1 ${theme.accent} ${theme.textSecondary} rounded-full text-sm border ${theme.border}`}
                     >
                       {deliverable}
                     </span>
@@ -339,7 +339,7 @@ const PricingSection = ({ scrollToSection }) => {
                 className={`w-full py-4 px-6 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 ${
                   plan.popular
                     ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 shadow-lg'
-                    : 'bg-neutral-900 text-white hover:bg-neutral-800'
+                    : `${theme.secondary === 'bg-white' ? 'bg-neutral-900 text-white hover:bg-neutral-800' : 'bg-neutral-100 text-neutral-900 hover:bg-neutral-200'} ${theme.shadowLg}`
                 }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -361,15 +361,15 @@ const PricingSection = ({ scrollToSection }) => {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-3xl font-bold text-center mb-8">Feature Comparison</h3>
-          <div className="bg-white rounded-2xl shadow-lg border border-neutral-200 overflow-hidden">
+          <h3 className={`text-3xl font-bold text-center mb-8 ${theme.text}`}>Feature Comparison</h3>
+          <div className={`${theme.secondary} rounded-2xl ${theme.shadowLg} border ${theme.border} overflow-hidden`}>
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-neutral-50">
+                <thead className={theme.primary}>
                   <tr>
-                    <th className="text-left p-6 font-semibold">Features</th>
+                    <th className={`text-left p-6 font-semibold ${theme.text}`}>Features</th>
                     {pricingPlans.map((plan) => (
-                      <th key={plan.name} className="text-center p-6 font-semibold">
+                      <th key={plan.name} className={`text-center p-6 font-semibold ${theme.text}`}>
                         {plan.name}
                       </th>
                     ))}
@@ -377,8 +377,8 @@ const PricingSection = ({ scrollToSection }) => {
                 </thead>
                 <tbody>
                   {comparisonFeatures.map((feature, index) => (
-                    <tr key={feature} className={index % 2 === 0 ? 'bg-neutral-25' : 'bg-white'}>
-                      <td className="p-6 font-medium text-neutral-700">{feature}</td>
+                    <tr key={feature} className={index % 2 === 0 ? theme.primary : theme.secondary}>
+                      <td className={`p-6 font-medium ${theme.textSecondary}`}>{feature}</td>
                       {pricingPlans.map((plan) => (
                         <td key={plan.name} className="text-center p-6">
                           <Check size={20} className="text-green-500 mx-auto" />
@@ -401,15 +401,15 @@ const PricingSection = ({ scrollToSection }) => {
           className="text-center"
         >
           <motion.div 
-            className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-8 relative overflow-hidden"
+            className={`${theme.secondary} ${theme.border} border rounded-2xl p-8 relative overflow-hidden`}
             whileHover={{ scale: 1.02, y: -5 }}
           >
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
+            <div className={`absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-600/5`}></div>
             
-            <DollarSign size={32} className="mx-auto mb-4 text-green-400" />
-            <h3 className="text-3xl font-bold mb-4 text-white">Need a Custom Solution?</h3>
-            <p className="text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <DollarSign size={32} className={`mx-auto mb-4 text-green-400`} />
+            <h3 className={`text-3xl font-bold mb-4 ${theme.text}`}>Need a Custom Solution?</h3>
+            <p className={`${theme.textSecondary} mb-8 max-w-2xl mx-auto leading-relaxed`}>
               Every project is unique. For complex applications, e-commerce platforms, or enterprise solutions, 
               I'll provide a detailed custom quote based on your specific requirements and timeline.
             </p>
@@ -422,7 +422,7 @@ const PricingSection = ({ scrollToSection }) => {
               ].map((benefit, index) => (
                 <motion.div 
                   key={index}
-                  className="flex items-center justify-center gap-3 text-neutral-300"
+                  className={`flex items-center justify-center gap-3 ${theme.textSecondary}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -434,9 +434,9 @@ const PricingSection = ({ scrollToSection }) => {
               ))}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-8 text-sm text-neutral-400">
-              <div className="bg-neutral-800/50 rounded-lg p-4">
-                <h4 className="font-semibold text-white mb-2">Perfect for:</h4>
+            <div className={`grid md:grid-cols-2 gap-6 mb-8 text-sm ${theme.textSecondary}`}>
+              <div className={`${theme.primary} ${theme.border} border rounded-lg p-4`}>
+                <h4 className={`font-semibold ${theme.text} mb-2`}>Perfect for:</h4>
                 <ul className="space-y-1">
                   <li>• E-commerce platforms</li>
                   <li>• Enterprise applications</li>
@@ -444,8 +444,8 @@ const PricingSection = ({ scrollToSection }) => {
                   <li>• Custom requirements</li>
                 </ul>
               </div>
-              <div className="bg-neutral-800/50 rounded-lg p-4">
-                <h4 className="font-semibold text-white mb-2">What you get:</h4>
+              <div className={`${theme.primary} ${theme.border} border rounded-lg p-4`}>
+                <h4 className={`font-semibold ${theme.text} mb-2`}>What you get:</h4>
                 <ul className="space-y-1">
                   <li>• Detailed technical proposal</li>
                   <li>• Timeline & milestone breakdown</li>

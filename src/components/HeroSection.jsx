@@ -55,7 +55,7 @@ const HeroSection = ({ scrollToSection }) => {
             </motion.h1>
             
             <motion.p 
-              className="text-xl text-neutral-600 mb-12 leading-relaxed max-w-lg"
+              className={`text-xl ${theme.textSecondary} mb-12 leading-relaxed max-w-lg`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -73,7 +73,7 @@ const HeroSection = ({ scrollToSection }) => {
               <motion.button
                 onClick={() => scrollToSection('work')}
                 onKeyDown={(e) => handleKeyDown(e, () => scrollToSection('work'))}
-                className="group px-8 py-4 bg-neutral-900 text-neutral-50 font-medium rounded-full flex items-center justify-center hover:bg-neutral-800 transition-colors focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2"
+                className={`group px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-full flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${theme.shadowLg}`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 aria-label="Navigate to work portfolio section"
@@ -89,7 +89,7 @@ const HeroSection = ({ scrollToSection }) => {
                     href={social.href}
                     target={social.label === "Email" ? "_self" : "_blank"}
                     rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                    className="p-3 border border-neutral-300 rounded-full hover:border-neutral-900 hover:bg-neutral-900 hover:text-neutral-50 transition-all focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:ring-offset-2"
+                    className={`p-3 border ${theme.border} rounded-full hover:${theme.accent} hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     aria-label={social.ariaLabel}
@@ -198,15 +198,15 @@ const HeroSection = ({ scrollToSection }) => {
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" aria-label="Currently active"></div>
-                  <p className="text-sm text-neutral-600 font-medium">Currently working on</p>
+                  <p className={`text-sm ${theme.textSecondary} font-medium`}>Currently working on</p>
                 </div>
                 <h3 className="font-bold text-lg mb-2">Custom Web Applications</h3>
-                <p className="text-neutral-700 font-medium mb-1">@ LogikaBox</p>
-                <p className="text-sm text-neutral-600 mb-4">Leading frontend development across multiple industries</p>
+                <p className={`${theme.text} font-medium mb-1`}>@ LogikaBox</p>
+                <p className={`text-sm ${theme.textSecondary} mb-4`}>Leading frontend development across multiple industries</p>
                 
                 {/* Progress indicators */}
                 <div className="mt-4 space-y-2">
-                  <div className="flex justify-between text-xs text-neutral-600">
+                  <div className={`flex justify-between text-xs ${theme.textSecondary}`}>
                     <span>Project Progress</span>
                     <span>85%</span>
                   </div>
@@ -221,14 +221,14 @@ const HeroSection = ({ scrollToSection }) => {
                 </div>
                 
                 {/* Additional stats */}
-                <div className="mt-4 grid grid-cols-2 gap-4 pt-4 border-t border-neutral-200">
+                <div className={`mt-4 grid grid-cols-2 gap-4 pt-4 border-t ${theme.border}`}>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-neutral-900">3+</p>
-                    <p className="text-xs text-neutral-600">Years Experience</p>
+                    <p className={`text-2xl font-bold ${theme.text}`}>3+</p>
+                    <p className={`text-xs ${theme.textSecondary}`}>Years Experience</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-neutral-900">15+</p>
-                    <p className="text-xs text-neutral-600">Projects Completed</p>
+                    <p className={`text-2xl font-bold ${theme.text}`}>15+</p>
+                    <p className={`text-xs ${theme.textSecondary}`}>Projects Completed</p>
                   </div>
                 </div>
               </motion.div>
@@ -243,10 +243,10 @@ const HeroSection = ({ scrollToSection }) => {
                 aria-label="Currently employed at LogikaBox Digital Solutions"
               >
                 <p className="text-white text-sm font-semibold">LogikaBox</p>
-                <p className="text-neutral-300 text-xs">Digital Solutions</p>
+                <p className={`${theme.textSecondary} text-xs`}>Digital Solutions</p>
                 <div className="mt-1 flex items-center">
                   <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                  <span className="text-neutral-400 text-xs">Active</span>
+                  <span className={`${theme.textSecondary} text-xs`}>Active</span>
                 </div>
               </motion.div>
             </div>

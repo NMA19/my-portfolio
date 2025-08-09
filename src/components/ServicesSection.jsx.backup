@@ -1,10 +1,25 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Smartphone, Palette, Settings, Zap, Clock, ArrowRight, CheckCircle, Star, Users, Briefcase } from 'lucide-react';
+import { Code          <motion.h2 
+            className={`text-5xl lg:text-6xl font-bold mb-6 tracking-tight ${theme.text}`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Services
+          </motion.h2>
+          <motion.p 
+            className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >lette, Settings, Zap, Clock, ArrowRight, CheckCircle, Star, Users, Briefcase } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const ServicesSection = () => {
-  const { theme, isDarkMode } = useTheme();
+  const { theme } = useTheme();
   const [activeService, setActiveService] = useState(null);
   
   const handleKeyDown = (event, action) => {
@@ -13,7 +28,6 @@ const ServicesSection = () => {
       action();
     }
   };
-
   const services = [
     {
       icon: Code,
@@ -113,7 +127,7 @@ const ServicesSection = () => {
           className="text-center mb-16"
         >
           <motion.h2 
-            className={`text-5xl lg:text-6xl font-bold mb-6 tracking-tight ${theme.text}`}
+            className="text-5xl lg:text-6xl font-bold mb-6 tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -122,7 +136,7 @@ const ServicesSection = () => {
             Services
           </motion.h2>
           <motion.p 
-            className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto mb-12`}
+            className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -148,16 +162,16 @@ const ServicesSection = () => {
             ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                className={`${theme.secondary} rounded-xl p-6 ${theme.shadowLg} ${theme.border} border text-center hover:${theme.shadowXl} transition-shadow`}
+                className="bg-white rounded-xl p-6 shadow-lg border border-neutral-200 text-center hover:shadow-xl transition-shadow"
                 whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6 + index * 0.1 }}
               >
-                <stat.icon className={`mx-auto mb-3 ${theme.accent.replace('bg-', 'text-')}`} size={24} />
+                <stat.icon className="mx-auto mb-3 text-blue-600" size={24} />
                 <motion.p 
-                  className={`text-2xl font-bold ${theme.text} mb-1`}
+                  className="text-2xl font-bold text-neutral-900 mb-1"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -165,7 +179,7 @@ const ServicesSection = () => {
                 >
                   {stat.number}
                 </motion.p>
-                <p className={`text-sm ${theme.textSecondary}`}>{stat.label}</p>
+                <p className="text-sm text-neutral-600">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -180,7 +194,7 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border hover:${theme.shadowXl} transition-all duration-300 relative overflow-hidden group cursor-pointer`}
+              className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border hover:${theme.shadowLg} transition-all duration-300 relative overflow-hidden group cursor-pointer`}
               onClick={() => setActiveService(activeService === index ? null : index)}
               onKeyDown={(e) => handleKeyDown(e, () => setActiveService(activeService === index ? null : index))}
               tabIndex={0}
@@ -190,37 +204,37 @@ const ServicesSection = () => {
             >
               {/* Highlight Badge */}
               {service.highlight && (
-                <div className={`absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-medium px-3 py-1 rounded-full`}>
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-xs font-medium px-3 py-1 rounded-full">
                   {service.highlight}
                 </div>
               )}
 
               <div className="mb-6">
                 <motion.div 
-                  className={`w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
+                  className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
                   whileHover={{ rotate: 5 }}
                 >
                   <service.icon size={28} className="text-white" />
                 </motion.div>
-                <h3 className={`text-2xl font-bold mb-3 ${theme.text} group-hover:${theme.accent.replace('bg-', 'text-')} transition-colors`}>{service.title}</h3>
-                <p className={`${theme.textSecondary} leading-relaxed mb-4`}>{service.description}</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{service.title}</h3>
+                <p className="text-neutral-600 leading-relaxed mb-4">{service.description}</p>
                 
                 {/* Pricing and Timeline */}
                 <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className={`${theme.primary} ${theme.border} border rounded-lg p-3`}>
-                    <p className={`text-sm ${theme.accent.replace('bg-', 'text-')} font-medium`}>Price</p>
-                    <p className={`font-bold ${theme.text}`}>{service.pricing}</p>
+                  <div className="bg-blue-50 rounded-lg p-3">
+                    <p className="text-sm text-blue-600 font-medium">Price</p>
+                    <p className="font-bold text-neutral-900">{service.pricing}</p>
                   </div>
-                  <div className={`${theme.primary} ${theme.border} border rounded-lg p-3`}>
-                    <p className={`text-sm ${theme.accent.replace('bg-', 'text-')} font-medium`}>Timeline</p>
-                    <p className={`font-bold ${theme.text}`}>{service.timeline}</p>
+                  <div className="bg-purple-50 rounded-lg p-3">
+                    <p className="text-sm text-purple-600 font-medium">Timeline</p>
+                    <p className="font-bold text-neutral-900">{service.timeline}</p>
                   </div>
                 </div>
               </div>
               
               {/* Features - Always visible */}
               <div className="space-y-3 mb-6">
-                <h4 className={`font-semibold ${theme.text} mb-3`}>What's Included:</h4>
+                <h4 className="font-semibold text-neutral-900 mb-3">What's Included:</h4>
                 {service.features.map((feature, idx) => (
                   <motion.div 
                     key={idx} 
@@ -231,19 +245,19 @@ const ServicesSection = () => {
                     transition={{ delay: (index * 0.1) + (idx * 0.05) }}
                   >
                     <CheckCircle size={16} className="text-green-500 flex-shrink-0" />
-                    <span className={`${theme.textSecondary} text-sm font-medium`}>{feature}</span>
+                    <span className="text-neutral-700 text-sm font-medium">{feature}</span>
                   </motion.div>
                 ))}
               </div>
 
               {/* Portfolio Count */}
-              <div className={`flex items-center justify-between pt-4 border-t ${theme.border}`}>
+              <div className="flex items-center justify-between pt-4 border-t border-neutral-200">
                 <div className="flex items-center space-x-2">
                   <Star size={16} className="text-yellow-500" />
-                  <span className={`text-sm ${theme.textSecondary}`}>{service.portfolio}</span>
+                  <span className="text-sm text-neutral-600">{service.portfolio}</span>
                 </div>
                 <motion.div 
-                  className={`flex items-center space-x-2 ${theme.accent.replace('bg-', 'text-')} hover:opacity-70`}
+                  className="flex items-center space-x-2 text-blue-600 hover:text-blue-700"
                   whileHover={{ x: 5 }}
                 >
                   <span className="text-sm font-medium">Learn More</span>
@@ -258,22 +272,22 @@ const ServicesSection = () => {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className={`mt-6 pt-6 border-t ${theme.border}`}
+                    className="mt-6 pt-6 border-t border-neutral-200"
                   >
-                    <div className={`${theme.primary} ${theme.border} border rounded-lg p-4`}>
-                      <h4 className={`font-semibold ${theme.text} mb-2`}>Service Details</h4>
-                      <p className={`text-sm ${theme.textSecondary} mb-3`}>
+                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-neutral-900 mb-2">Service Details</h4>
+                      <p className="text-sm text-neutral-600 mb-3">
                         This service includes comprehensive planning, development, testing, and deployment phases. 
                         All projects come with documentation and post-launch support.
                       </p>
                       <div className="flex items-center space-x-4 text-sm">
                         <span className="flex items-center space-x-1">
                           <CheckCircle size={14} className="text-green-500" />
-                          <span className={theme.textSecondary}>Free Consultation</span>
+                          <span>Free Consultation</span>
                         </span>
                         <span className="flex items-center space-x-1">
                           <CheckCircle size={14} className="text-green-500" />
-                          <span className={theme.textSecondary}>Post-Launch Support</span>
+                          <span>Post-Launch Support</span>
                         </span>
                       </div>
                     </div>
@@ -292,12 +306,12 @@ const ServicesSection = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mb-16"
         >
-          <h3 className={`text-3xl font-bold text-center mb-12 ${theme.text}`}>What Clients Say</h3>
+          <h3 className="text-3xl font-bold text-center mb-12">What Clients Say</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.name}
-                className={`${theme.secondary} rounded-2xl p-8 ${theme.shadowLg} ${theme.border} border`}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-neutral-200"
                 whileHover={{ scale: 1.02, y: -5 }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -309,10 +323,10 @@ const ServicesSection = () => {
                     <Star key={i} size={20} className="text-yellow-500 fill-current" />
                   ))}
                 </div>
-                <p className={`${theme.textSecondary} mb-6 leading-relaxed italic`}>"{testimonial.content}"</p>
+                <p className="text-neutral-600 mb-6 leading-relaxed italic">"{testimonial.content}"</p>
                 <div>
-                  <p className={`font-semibold ${theme.text}`}>{testimonial.name}</p>
-                  <p className={`text-sm ${theme.textSecondary}`}>{testimonial.role}</p>
+                  <p className="font-semibold text-neutral-900">{testimonial.name}</p>
+                  <p className="text-sm text-neutral-600">{testimonial.role}</p>
                 </div>
               </motion.div>
             ))}
@@ -328,11 +342,11 @@ const ServicesSection = () => {
           className="text-center"
         >
           <motion.div 
-            className={`${theme.secondary} ${theme.border} border rounded-2xl p-8 ${theme.text} max-w-lg mx-auto relative overflow-hidden`}
+            className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-8 text-white max-w-lg mx-auto relative overflow-hidden"
             whileHover={{ scale: 1.02, y: -5 }}
           >
             {/* Background Pattern */}
-            <div className={`absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-600/5`}></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10"></div>
             
             <motion.div
               initial={{ scale: 0.8 }}
@@ -340,12 +354,12 @@ const ServicesSection = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.8, type: "spring" }}
             >
-              <Clock size={32} className={`mx-auto mb-4 ${theme.accent.replace('bg-', 'text-')}`} />
-              <h3 className={`text-2xl font-bold mb-2 ${theme.text}`}>Hourly Consultation</h3>
-              <div className={`text-5xl font-bold mb-2 ${theme.text}`}>
-                $12<span className={`text-lg ${theme.textSecondary}`}>/hour</span>
+              <Clock size={32} className="mx-auto mb-4 text-blue-400" />
+              <h3 className="text-2xl font-bold mb-2">Hourly Consultation</h3>
+              <div className="text-5xl font-bold mb-2">
+                $12<span className="text-lg text-neutral-300">/hour</span>
               </div>
-              <p className={`${theme.textSecondary} mb-6`}>Perfect for ongoing projects or technical consultation</p>
+              <p className="text-neutral-300 mb-6">Perfect for ongoing projects or technical consultation</p>
               
               <div className="grid grid-cols-1 gap-3 mb-6 text-sm">
                 {[
@@ -364,13 +378,13 @@ const ServicesSection = () => {
                     transition={{ delay: 1 + index * 0.1 }}
                   >
                     <CheckCircle size={16} className="text-green-400 flex-shrink-0" />
-                    <span className={theme.textSecondary}>{feature}</span>
+                    <span className="text-neutral-300">{feature}</span>
                   </motion.div>
                 ))}
               </div>
 
               <motion.button
-                className={`bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:opacity-90 transition-all flex items-center space-x-2 mx-auto`}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full font-medium hover:from-blue-600 hover:to-purple-700 transition-all flex items-center space-x-2 mx-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label="Get started with hourly consultation"
