@@ -6,6 +6,56 @@ import mall from '../assets/mall.jpeg';
 import Cap from '../assets/Cap.png';
 import Suit from '../assets/Suit.jpg';
 
+// Magical Sparkles Component
+const MagicalSparkles = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(8)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+        }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: [0, 1, 0],
+          scale: [0, 1, 0],
+          rotate: [0, 180, 360]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          delay: i * 0.5,
+          repeatDelay: 2
+        }}
+      >
+        <span className="text-pink-400 text-lg">✨</span>
+      </motion.div>
+    ))}
+  </div>
+);
+
+// Cherry Blossom Border Component
+const CherryBlossomBorder = () => (
+  <div className="absolute inset-0 pointer-events-none">
+    <motion.div 
+      className="absolute top-2 right-2 text-pink-300"
+      animate={{ rotate: [0, 10, -10, 0] }}
+      transition={{ duration: 4, repeat: Infinity }}
+    >
+      🌸
+    </motion.div>
+    <motion.div 
+      className="absolute bottom-2 left-2 text-pink-400"
+      animate={{ rotate: [0, -15, 15, 0] }}
+      transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+    >
+      🌺
+    </motion.div>
+  </div>
+);
+
 const WorkSection = () => {
   const { theme } = useTheme();
   const [activeFilter, setActiveFilter] = useState('all');
@@ -86,10 +136,15 @@ const WorkSection = () => {
   return (
     <section 
       id="work" 
-      className={`py-24 ${theme.secondary} transition-colors duration-300`}
+      className={`relative py-24 ${theme.secondary} transition-colors duration-300 overflow-hidden`}
       aria-label="Portfolio work section showcasing selected projects"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Magical Background */}
+      <MagicalSparkles />
+      <div className="absolute top-10 left-20 w-72 h-72 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-20 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+      
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,13 +153,29 @@ const WorkSection = () => {
           className="mb-16 text-center"
         >
           <motion.h2 
-            className="text-5xl lg:text-6xl font-bold mb-6 tracking-tight"
+            className={`text-5xl lg:text-6xl font-bold mb-6 tracking-tight ${theme.text} relative`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Selected Work
+            <motion.span
+              className="relative inline-block"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Selected Work
+              <motion.span 
+                className="absolute -top-3 -right-8 text-2xl"
+                animate={{ 
+                  rotate: [0, 15, -15, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                🌸
+              </motion.span>
+            </motion.span>
           </motion.h2>
           <motion.p 
             className={`text-xl ${theme.textSecondary} max-w-3xl mx-auto mb-12`}
@@ -163,24 +234,45 @@ const WorkSection = () => {
             ].map((stat, index) => (
               <motion.div 
                 key={stat.label}
-                className={`${theme.secondary} rounded-xl p-6 ${theme.shadow} border ${theme.border} text-center hover:${theme.shadowLg} transition-shadow`}
-                whileHover={{ scale: 1.05, y: -5 }}
+                className={`${theme.secondary} rounded-xl p-6 ${theme.shadow} border ${theme.border} text-center hover:${theme.shadowLg} transition-all relative overflow-hidden group`}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  borderColor: "rgba(236, 72, 153, 0.3)"
+                }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.8 + index * 0.1 }}
               >
-                <stat.icon className={`mx-auto mb-3 ${theme.iconColor}`} size={24} />
-                <motion.p 
-                  className={`text-2xl font-bold ${theme.text} mb-1`}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 1 + index * 0.1 }}
-                >
-                  {stat.number}
-                </motion.p>
-                <p className={`text-sm ${theme.textSecondary}`}>{stat.label}</p>
+                {/* Sakura decoration */}
+                <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <motion.span 
+                    className="text-pink-400"
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
+                    🌸
+                  </motion.span>
+                </div>
+                
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-50/20 to-purple-50/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div className="relative z-10">
+                  <stat.icon className={`mx-auto mb-3 ${theme.iconColor}`} size={24} />
+                  <motion.p 
+                    className={`text-2xl font-bold ${theme.text} mb-1`}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 1 + index * 0.1 }}
+                  >
+                    {stat.number}
+                  </motion.p>
+                  <p className={`text-sm ${theme.textSecondary}`}>{stat.label}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>

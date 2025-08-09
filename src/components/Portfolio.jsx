@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Sun, Moon, ArrowUp, Loader2 } from 'lucide-react';
 
 // Import all components
@@ -9,6 +9,7 @@ import AboutSection from './AboutSection';
 import WorkSection from './WorkSection';
 import ServicesSection from './ServicesSection';
 import PricingSection from './PricingSection';
+import BlogSection from './BlogSection';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
 
@@ -18,8 +19,7 @@ import { useTheme } from '../contexts/ThemeContext';
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Disable loading screen
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -39,21 +39,11 @@ const Portfolio = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Mouse tracking for cursor effect
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  // Loading effect
+  // Loading effect - reduced time for better performance
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 100); // Reduced from 1000ms to 100ms
 
     return () => clearTimeout(timer);
   }, []);
@@ -92,14 +82,14 @@ const Portfolio = () => {
   // Loading screen
   if (isLoading) {
     return (
-      <div className={`fixed inset-0 ${theme.primary} ${theme.text} flex items-center justify-center z-50`}>
+      <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center"
         >
-          <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" />
-          <p className="text-xl font-light">Loading Portfolio...</p>
+          <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-blue-500" />
+          <p className="text-xl font-light text-gray-800">Loading Portfolio...</p>
         </motion.div>
       </div>
     );
@@ -155,18 +145,6 @@ const Portfolio = () => {
         </button>
       )}
 
-      {/* Custom Cursor */}
-      <div
-        className={`fixed w-6 h-6 border-2 ${isDarkMode ? 'border-white' : 'border-black'} rounded-full pointer-events-none z-50 mix-blend-difference`}
-        style={{
-          left: `${mousePosition.x - 12}px`,
-          top: `${mousePosition.y - 12}px`,
-          transition: 'all 0.1s ease',
-          position: 'fixed',
-          zIndex: 9997
-        }}
-      />
-
       {/* Navigation */}
       <Navigation 
         activeSection={activeSection}
@@ -200,6 +178,11 @@ const Portfolio = () => {
         {/* Pricing Section */}
         <section id="pricing">
           <PricingSection scrollToSection={scrollToSection} />
+        </section>
+
+        {/* Blog Section */}
+        <section id="blog">
+          <BlogSection />
         </section>
 
         {/* Contact Section */}

@@ -3,6 +3,35 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUp, Heart, Coffee, Code, MapPin, Calendar, Download } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
+// Floating Sakura for Footer
+const FooterSakura = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(4)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute text-pink-300 opacity-40"
+        style={{
+          left: `${20 + i * 20}%`,
+          top: `${Math.random() * 50}%`,
+        }}
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 15, -15, 0],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{
+          duration: 4 + i,
+          repeat: Infinity,
+          delay: i * 0.5,
+          ease: "easeInOut"
+        }}
+      >
+        🌸
+      </motion.div>
+    ))}
+  </div>
+);
+
 const Footer = ({ scrollToSection }) => {
   const { theme } = useTheme();
   const currentYear = new Date().getFullYear();

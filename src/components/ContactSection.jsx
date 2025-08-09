@@ -3,6 +3,38 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowUpRight, Send, MessageSquare, Calendar, MapPin, Phone, Clock, CheckCircle, User, MessageCircle } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
+// Floating Hearts and Sparkles
+const FloatingElements = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {[...Array(6)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="absolute"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+        }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ 
+          opacity: [0, 1, 0],
+          scale: [0, 1.2, 0],
+          y: [0, -30, 0]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          delay: i * 0.8,
+          repeatDelay: 2
+        }}
+      >
+        <span className="text-pink-400 text-xl">
+          {i % 3 === 0 ? '💖' : i % 2 === 0 ? '✨' : '🌸'}
+        </span>
+      </motion.div>
+    ))}
+  </div>
+);
+
 const ContactSection = () => {
   const { theme, isDarkMode } = useTheme();
   const [formData, setFormData] = useState({
@@ -109,10 +141,18 @@ const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className={`py-24 ${theme.secondary} transition-colors duration-300`}
+      className={`relative py-24 ${theme.secondary} transition-colors duration-300 overflow-hidden`}
       aria-label="Contact section"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Floating Elements Background */}
+      <FloatingElements />
+      
+      {/* Magical Background Gradients */}
+      <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-pink-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-yellow-200/30 to-pink-200/30 rounded-full blur-2xl animate-bounce" style={{ animationDelay: '1s' }}></div>
+      
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,13 +161,29 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-5xl lg:text-6xl font-bold mb-8 tracking-tight"
+            className={`text-5xl lg:text-6xl font-bold mb-8 tracking-tight ${theme.text} relative`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            Let's Create Something Amazing
+            <motion.span
+              className="relative inline-block"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              Let's Create Something Amazing
+              <motion.span 
+                className="absolute -top-4 -right-8 text-3xl"
+                animate={{ 
+                  rotate: [0, 20, -20, 0],
+                  scale: [1, 1.3, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                💖
+              </motion.span>
+            </motion.span>
           </motion.h2>
           <motion.p 
             className={`text-xl ${theme.textSecondary} mb-12 leading-relaxed max-w-3xl mx-auto`}

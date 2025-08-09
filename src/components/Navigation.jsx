@@ -3,6 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
+// Floating Sakura for Navigation
+const NavSakura = () => (
+  <motion.div
+    className="absolute top-2 right-20 text-pink-300 opacity-60 pointer-events-none"
+    animate={{ 
+      rotate: [0, 15, -15, 0],
+      y: [0, -5, 0]
+    }}
+    transition={{ 
+      duration: 4, 
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  >
+    🌸
+  </motion.div>
+);
+
 const Navigation = ({ 
   activeSection, 
   isMenuOpen, 
@@ -23,6 +41,7 @@ const Navigation = ({
     { id: 'work', label: 'Work' },
     { id: 'services', label: 'Services' },
     { id: 'pricing', label: 'Pricing' },
+    { id: 'blog', label: 'Blog' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -30,11 +49,17 @@ const Navigation = ({
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full ${theme.primary}/80 backdrop-blur-md z-40 ${theme.border} border-b transition-colors duration-300`}
+      className={`fixed top-0 w-full ${theme.primary}/80 backdrop-blur-md z-40 ${theme.border} border-b transition-colors duration-300 relative overflow-hidden`}
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Sakura decoration */}
+      <NavSakura />
+      
+      {/* Subtle gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-pink-50/5 via-transparent to-purple-50/5 pointer-events-none"></div>
+      
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           <motion.div
             whileHover={{ scale: 1.05 }}
