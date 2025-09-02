@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, MapPin } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Github, Linkedin, Mail, ArrowRight, MapPin, Download, Code2, Sparkles, Zap, Star, ChevronDown } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 const HeroSection = ({ scrollToSection }) => {

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, GraduationCap, Code, Heart, Award, Target, Users } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-import Text3D from './Text3D';
 
 // Professional 3D Card Component
 const Professional3DCard = ({ children, className = '', delay = 0, ...props }) => (
