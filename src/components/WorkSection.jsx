@@ -246,15 +246,13 @@ const WorkSection = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.8 + index * 0.1 }}
               >
-                {/* Sakura decoration */}
+                {/* Minimal decoration */}
                 <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <motion.span 
-                    className="text-pink-400"
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    🌸
-                  </motion.span>
+                  <motion.div 
+                    className="w-2 h-2 bg-blue-400 rounded-full"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
                 </div>
                 
                 {/* Gradient overlay */}
