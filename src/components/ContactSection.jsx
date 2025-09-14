@@ -148,8 +148,8 @@ const ContactSection = () => {
       <FloatingElements />
       
       {/* Magical Background Gradients */}
-      <div className="absolute top-10 left-10 w-80 h-80 bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-pink-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-10 left-10 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-pink-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-200/15 to-pink-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       <div className="absolute top-1/2 left-1/4 w-40 h-40 bg-gradient-to-br from-yellow-200/30 to-pink-200/30 rounded-full blur-2xl animate-bounce" style={{ animationDelay: '1s' }}></div>
       
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">

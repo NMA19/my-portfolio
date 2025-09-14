@@ -53,7 +53,7 @@ const SakuraTree3D = () => {
               style={{
                 width: `${120 - i * 10}px`,
                 height: '6px',
-                left: i % 2 === 0 ? '32px' : '-80px',
+                left: i % 2 === 0 ? '32px' : '0px',
                 top: `${50 + i * 35}px`,
                 transform: `rotateZ(${i % 2 === 0 ? 25 : -25}deg) translateZ(${i * 2}px)`,
                 transformOrigin: i % 2 === 0 ? 'left center' : 'right center'
@@ -71,8 +71,8 @@ const SakuraTree3D = () => {
             key={i}
             className="absolute"
             style={{
-              left: `${Math.random() * 400 - 200}px`,
-              top: `${Math.random() * 300 - 150}px`,
+              left: `${Math.random() * 200}px`,
+              top: `${Math.random() * 200}px`,
               transform: `translateZ(${Math.random() * 100}px)`,
               transformStyle: 'preserve-3d'
             }}
@@ -114,8 +114,8 @@ const SakuraTree3D = () => {
             key={`petal-${i}`}
             className="absolute"
             style={{
-              left: `${Math.random() * 600 - 300}px`,
-              top: `${Math.random() * 400 - 200}px`,
+              left: `${Math.random() * 300}px`,
+              top: `${Math.random() * 200}px`,
               transform: `translateZ(${Math.random() * 150}px)`,
             }}
             initial={{ 
@@ -441,13 +441,13 @@ const BlogSection = () => {
       <FloatingKnowledge3D />
       
       {/* Professional 3D Background Gradients */}
-      <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-blue-400/30 via-purple-400/20 to-pink-400/25 rounded-full blur-3xl animate-pulse"
+      <div className="absolute top-10 right-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-400/30 via-purple-400/20 to-pink-400/25 rounded-full blur-3xl animate-pulse"
            style={{ transform: 'translateZ(-50px)' }}></div>
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-gradient-to-br from-emerald-300/20 via-blue-300/15 to-indigo-300/25 rounded-full blur-3xl animate-pulse" 
+      <div className="absolute bottom-10 left-10 w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] bg-gradient-to-br from-emerald-300/20 via-blue-300/15 to-indigo-300/25 rounded-full blur-3xl animate-pulse" 
            style={{ animationDelay: '2s', transform: 'translateZ(-30px)' }}></div>
       <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-br from-rose-300/30 via-orange-300/20 to-amber-300/25 rounded-full blur-2xl animate-bounce" 
            style={{ animationDelay: '1s', transform: 'translateZ(-70px)' }}></div>
-      <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-gradient-to-br from-violet-300/25 via-fuchsia-300/20 to-cyan-300/25 rounded-full blur-3xl animate-pulse" 
+      <div className="absolute bottom-1/4 right-1/3 w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-violet-300/25 via-fuchsia-300/20 to-cyan-300/25 rounded-full blur-3xl animate-pulse" 
            style={{ animationDelay: '3s', transform: 'translateZ(-40px)' }}></div>
       
       {/* Premium Glassmorphism Overlay with 3D depth */}

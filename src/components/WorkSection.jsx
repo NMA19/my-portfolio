@@ -141,8 +141,8 @@ const WorkSection = () => {
     >
       {/* Magical Background */}
       <MagicalSparkles />
-      <div className="absolute top-10 left-20 w-72 h-72 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-10 right-20 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+      <div className="absolute top-10 left-20 w-56 h-56 md:w-72 md:h-72 bg-gradient-to-br from-purple-200/20 to-pink-200/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-10 right-20 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-200/15 to-purple-200/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
       
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 z-10">
         <motion.div

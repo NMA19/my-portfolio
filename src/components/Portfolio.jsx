@@ -96,7 +96,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className={`min-h-screen ${theme.primary} ${theme.text} relative overflow-hidden transition-colors duration-500`}>
+    <div className={`min-h-screen ${theme.primary} ${theme.text} relative overflow-hidden overflow-x-hidden transition-colors duration-500`}>
       {/* Scroll Progress Bar */}
       <div
         className={`fixed top-0 left-0 h-1 ${theme.accent} z-50`}
