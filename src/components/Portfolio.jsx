@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Sun, Moon, ArrowUp, Loader2 } from 'lucide-react';
 
-// Import all components
+// Import critical components immediately
 import Navigation from './Navigation';
 import HeroSection from './HeroSection';
-import AboutSection from './AboutSection';
-import WorkSection from './WorkSection';
-import ServicesSection from './ServicesSection';
-import PricingSection from './PricingSection';
-import BlogSection from './BlogSection';
-import ContactSection from './ContactSection';
-import Footer from './Footer';
+
+// Lazy load non-critical components
+const AboutSection = lazy(() => import('./AboutSection'));
+const WorkSection = lazy(() => import('./WorkSection'));
+const ServicesSection = lazy(() => import('./ServicesSection'));
+const PricingSection = lazy(() => import('./PricingSection'));
+const BlogSection = lazy(() => import('./BlogSection'));
+const ContactSection = lazy(() => import('./ContactSection'));
+const Footer = lazy(() => import('./Footer'));
 
 // Import theme context
 import { useTheme } from '../contexts/ThemeContext';
@@ -19,7 +21,7 @@ import { useTheme } from '../contexts/ThemeContext';
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Disable loading screen
+  const [isLoading, setIsLoading] = useState(false); // Loading screen disabled for performance
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -160,38 +162,46 @@ const Portfolio = () => {
           <HeroSection scrollToSection={scrollToSection} />
         </section>
 
-        {/* About Section */}
-        <section id="about">
-          <AboutSection />
-        </section>
+        {/* Lazy-loaded sections with Suspense */}
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-blue-50 to-purple-50 animate-pulse" />}>
+          <section id="about">
+            <AboutSection />
+          </section>
+        </Suspense>
 
-        {/* Work Section */}
-        <section id="work">
-          <WorkSection />
-        </section>
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-purple-50 to-pink-50 animate-pulse" />}>
+          <section id="work">
+            <WorkSection />
+          </section>
+        </Suspense>
 
-        {/* Services Section */}
-        <section id="services">
-          <ServicesSection />
-        </section>
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-pink-50 to-blue-50 animate-pulse" />}>
+          <section id="services">
+            <ServicesSection />
+          </section>
+        </Suspense>
 
-        {/* Pricing Section */}
-        <section id="pricing">
-          <PricingSection scrollToSection={scrollToSection} />
-        </section>
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-blue-50 to-indigo-50 animate-pulse" />}>
+          <section id="pricing">
+            <PricingSection scrollToSection={scrollToSection} />
+          </section>
+        </Suspense>
 
-        {/* Blog Section */}
-        <section id="blog">
-          <BlogSection />
-        </section>
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-indigo-50 to-purple-50 animate-pulse" />}>
+          <section id="blog">
+            <BlogSection />
+          </section>
+        </Suspense>
 
-        {/* Contact Section */}
-        <section id="contact">
-          <ContactSection />
-        </section>
+        <Suspense fallback={<div className="h-32 bg-gradient-to-r from-purple-50 to-pink-50 animate-pulse" />}>
+          <section id="contact">
+            <ContactSection />
+          </section>
+        </Suspense>
 
-        {/* Footer */}
-        <Footer scrollToSection={scrollToSection} />
+        <Suspense fallback={<div className="h-24 bg-gradient-to-r from-gray-50 to-gray-100 animate-pulse" />}>
+          <Footer scrollToSection={scrollToSection} />
+        </Suspense>
       </main>
     </div>
   );

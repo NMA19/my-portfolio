@@ -22,53 +22,12 @@ const ModernBackground = () => {
       />
       
       {/* Geometric Shapes */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/10 rounded-2xl blur-xl"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      
-      <motion.div
-        className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-purple-400/10 rounded-full blur-xl"
-        animate={{
-          y: [0, -20, 0],
-          scale: [1, 1.2, 1]
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400/10 rounded-2xl blur-xl" />
+      <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-purple-400/10 rounded-full blur-xl" />
 
-      {/* Minimal Floating Dots */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -50, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: Math.random() * 5 + 8,
-            repeat: Infinity,
-            delay: Math.random() * 3,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
+      {/* Static decorative dots */}
+      <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-blue-400/30 rounded-full" />
+      <div className="absolute bottom-1/4 right-1/3 w-1 h-1 bg-purple-400/30 rounded-full" />
     </div>
   );
 };

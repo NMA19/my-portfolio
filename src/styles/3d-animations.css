@@ -138,10 +138,11 @@
   transform: translateZ(5px) rotateX(2deg);
 }
 
-/* Professional 3D Particle System */
+/* Professional 3D Particle System - Optimized */
 .particle-3d {
-  animation: particleMove 15s linear infinite;
+  animation: particleMove 20s linear infinite;
   transform-style: preserve-3d;
+  will-change: transform;
 }
 
 @keyframes particleMove {

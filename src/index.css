@@ -10,3 +10,25 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+/* Performance optimizations */
+* {
+  will-change: auto;
+}
+
+.animate-pulse,
+.animate-spin,
+.animate-bounce {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
